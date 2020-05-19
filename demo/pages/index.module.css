@@ -1,0 +1,5 @@
+.home {
+    & .newComponent {
+        border: 1px solid red;
+    }
+}

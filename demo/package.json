@@ -1,0 +1,23 @@
+{
+  "name": "demo",
+  "version": "0.0.0",
+  "description": "demo",
+  "main": "index.js",
+  "author": "Paulo Marcos <paulo.marcos@moxy.studio>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moxystudio/react-lib-template.git"
+  },
+  "scripts": {
+    "dev": "onchange -i -k  \"../lib\" \"../dist\" -- next",
+    "build": "next build",
+    "start": "next start",
+    "export": "next export"
+  },
+  "dependencies": {
+    "@moxy/react-lib-template": "file:..",
+    "next": "^9.3.5",
+    "onchange": "^6.1.0"
+  }
+}
