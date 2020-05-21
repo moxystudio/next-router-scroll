@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "description": "demo",
   "main": "index.js",
-  "author": "Paulo Marcos <paulo.marcos@moxy.studio>",
+  "author": "Afonso Reis <antonio.reis@moxy.studio>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/moxystudio/react-lib-template.git"
+    "url": "git+https://github.com/moxystudio/next-scroll-behavior.git"
   },
   "scripts": {
     "dev": "onchange -i -k  \"../lib\" \"../dist\" -- next",
@@ -16,8 +16,12 @@
     "export": "next export"
   },
   "dependencies": {
-    "@moxy/react-lib-template": "file:..",
+    "@moxy/next-scroll-behavior": "file:..",
+    "@moxy/react-page-swapper": "^1.0.0",
     "next": "^9.3.5",
+    "react-transition-group": "^4.4.1"
+  },
+  "devDependencies": {
     "onchange": "^6.1.0"
   }
 }

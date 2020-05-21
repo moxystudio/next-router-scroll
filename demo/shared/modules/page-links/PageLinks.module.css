@@ -1,0 +1,22 @@
+.pageLinks {
+    height: 5rem;
+    padding: 0 2.5rem;
+    display: flex;
+    align-items: center;
+    background-color: gray;
+    color: black;
+
+    & a {
+        color: inherit;
+    }
+
+    & ul {
+        padding: 0;
+        display: flex;
+        list-style-type: none;
+
+        & li {
+            padding-right: 1.5rem;
+        }
+    }
+}
