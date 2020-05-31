@@ -1,1 +1,1 @@
-export { default } from './NewComponent';
+export { default } from './scroll-behavior';

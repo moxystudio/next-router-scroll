@@ -1,7 +1,7 @@
 {
-  "name": "@moxy/react-lib-template",
+  "name": "@moxy/next-scroll-behavior",
   "version": "0.0.0",
-  "description": "A template that aims to make the implementation of React component packages easier and more methodic.",
+  "description": "A package that provides a built-in custom scroll behavior that aims to make it easy to restore the user scroll position based on location history.",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
@@ -9,25 +9,24 @@
     "es",
     "dist"
   ],
-  "homepage": "https://github.com/moxystudio/react-lib-template#readme",
-  "author": "Rui Monteiro <rui.monteiro@moxy.studio>",
+  "homepage": "https://github.com/moxystudio/next-scroll-behavior#readme",
+  "author": "Afonso Reis <antonio.reis@moxy.studio>",
   "license": "MIT",
   "keywords": [
     "template"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/moxystudio/react-lib-template.git"
+    "url": "git+https://github.com/moxystudio/next-scroll-behavior.git"
   },
   "bugs": {
-    "url": "https://github.com/moxystudio/react-lib-template/issues"
+    "url": "https://github.com/moxystudio/next-scroll-behavior/issues"
   },
   "scripts": {
     "dev": "onchange -i -k  \"src\" -- npm run build",
-    "build:css": "rimraf dist && postcss src/styles/**/*.css --base src/styles --dir dist",
     "build:commonjs": "cross-env BABEL_ENV=commonjs babel src -d lib --delete-dir-on-start",
     "build:es": "cross-env BABEL_ENV=es babel src -d es --delete-dir-on-start",
-    "build": "npm run build:commonjs && npm run build:es && npm run build:css",
+    "build": "npm run build:commonjs && npm run build:es",
     "test": "jest",
     "lint": "eslint --ignore-path .gitignore .",
     "prerelease": "npm t && npm run lint && npm run build",
@@ -35,12 +34,14 @@
     "postrelease": "git push --follow-tags origin HEAD && npm publish"
   },
   "peerDependencies": {
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0"
+    "react-dom": "^16.8.0",
+    "react": "^16.8.0"
   },
   "dependencies": {
-    "classnames": "^2.2.6",
-    "prop-types": "^15.7.2"
+    "next": "^9.4.1",
+    "history": "^3.0.0",
+    "prop-types": "^15.7.2",
+    "scroll-behavior": "^0.9.11"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
@@ -60,10 +61,10 @@
     "husky": "^4.0.10",
     "jest": "^25.2.6",
     "lint-staged": "^10.0.2",
+    "next": "^9.4.1",
     "onchange": "^7.0.1",
-    "postcss-cli": "^7.1.0",
-    "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react": "^16.8.6",
     "rimraf": "^3.0.2",
     "standard-version": "^7.0.0"
   }

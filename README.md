@@ -1,57 +1,87 @@
--------
-### ⚠️  PLEASE READ THE [INSTRUCTIONS](/INSTRUCTIONS.md) FOR GUIDELINES ON HOW TO START YOUR PACKAGE.
-> Don't forget to remove this warning while updating this README.
--------
-
-# {package-name}
+# next-scroll-restoration
 
 [![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][build-status-image]][build-status-url] [![Coverage Status][codecov-image]][codecov-url] [![Dependency status][david-dm-image]][david-dm-url] [![Dev Dependency status][david-dm-dev-image]][david-dm-dev-url]
 
-[npm-url]:https://npmjs.org/package/@moxy/{package-name}
-[downloads-image]:https://img.shields.io/npm/dm/@moxy/{package-name}.svg
-[npm-image]:https://img.shields.io/npm/v/@moxy/{package-name}.svg
-[build-status-url]:https://github.com/moxystudio/{package-name}/actions
-[build-status-image]:https://img.shields.io/github/workflow/status/moxystudio/{package-name}/Node%20CI/master
-[codecov-url]:https://codecov.io/gh/moxystudio/{package-name}
-[codecov-image]:https://img.shields.io/codecov/c/github/moxystudio/{package-name}/master.svg
-[david-dm-url]:https://david-dm.org/moxystudio/{package-name}
-[david-dm-image]:https://img.shields.io/david/moxystudio/{package-name}.svg
-[david-dm-dev-url]:https://david-dm.org/moxystudio/{package-name}?type=dev
-[david-dm-dev-image]:https://img.shields.io/david/dev/moxystudio/{package-name}.svg
+[npm-url]:https://npmjs.org/package/@moxy/next-scroll-restoration
+[downloads-image]:https://img.shields.io/npm/dm/@moxy/next-scroll-restoration.svg
+[npm-image]:https://img.shields.io/npm/v/@moxy/next-scroll-restoration.svg
+[build-status-url]:https://github.com/moxystudio/next-scroll-restoration/actions
+[build-status-image]:https://img.shields.io/github/workflow/status/moxystudio/next-scroll-restoration/Node%20CI/master
+[codecov-url]:https://codecov.io/gh/moxystudio/next-scroll-restoration
+[codecov-image]:https://img.shields.io/codecov/c/github/moxystudio/next-scroll-restoration/master.svg
+[david-dm-url]:https://david-dm.org/moxystudio/next-scroll-restoration
+[david-dm-image]:https://img.shields.io/david/moxystudio/next-scroll-restoration.svg
+[david-dm-dev-url]:https://david-dm.org/moxystudio/next-scroll-restoration?type=dev
+[david-dm-dev-image]:https://img.shields.io/david/dev/moxystudio/next-scroll-restoration.svg
 
-{package-description}
+`next-scroll-restoration` provides a built in custom scroll behavior that aims to make it easy to restore the user scroll position based on location history.
 
 ## Installation
 
 ```sh
-$ npm install @moxy/{package-name}
+$ npm install @moxy/next-scroll-restoration
 ```
 
 This library is written in modern JavaScript and is published in both CommonJS and ES module transpiled variants. If you target older browsers please make sure to transpile accordingly.
 
 ## Motivation
 
-{package-motivation}
+There are some cases where you need to take control on how your application scroll is handled; namely, you may want to restore scroll when user is navigating within your application pages, but you need to do extra work before or after the page has changed, either by using some sort of page transition or any other feature.
+
+`next-scroll-restoration` provides a built-in custom scroll behavior that aims to make it easy to restore the user scroll position based on location history.
+
+This package is built on top of [scroll-behavior](https://www.npmjs.com/package/scroll-behavior) and it's meant to be used in `Nextjs` applications.
+
 
 ## Usage
 
-{package-usage-example}
+You can simply import the package and update the scroll whenever your need.
+
+> `Router` won't be accessible while it's not initialized, so make sure to initialize `getScrollBehavior()` in `componentDidMount` or in the equivalent `useEffect` hook like the example below.
+
+```js
+// ...
+
+import getScrollBehavior from '@moxy/next-scroll-behavior';
+
+// ...
+
+useEffect(() => {
+    scrollBehaviorRef.current = getScrollBehavior();
+
+    return () => {
+        scrollBehaviorRef.current.stop();
+    };
+}, []);
+
+// ...
+
+const updateScroll = useCallback(() => scrollBehaviorRef.current.updateScroll(), []);
+
+```
+
+> ⚠️ This package monkey patches Next.js `<Link />` component, changing the `scroll` prop default value to `false`. You can disable this behavior by passing `disableNextLinkScroll` as `true` in the option argument when calling `getScrollBehavior()`.
+>
+> Bear in mind that the package also sets `history.scrollRestoration` to `manual`. 
+
+## How it works
+
+This package works by actively listening to `Nextjs` router events on `routeChangeStart`, writing the scroll values associated with the current `location` in the `Session Storage` and reading these values whenever `updateScroll` is called.
 
 ## API
 
-{package-api-description}
+The function accepts an `options` object argument.
 
-#### {package-api-prop-example}
+| Option Key | Default | Description |
+| ---------- | ------- | ----------- |
+| `disableNextLinkScroll` | `true` | Enables or disables changing the default `scroll` prop of Next.js `<Link />` component |
 
-Type: `object`
-Required: `true`
-
-The `{package-api-prop-example}` has the following shape:
 ```js
-{package-api-prop-example}: PropTypes.shape({
-    foo: PropTypes.string,
-    bar: PropTypes.arrayOf(PropTypes.object),
-}).isRequired,
+const scrollBehaviorOptions = {
+    disableNextLinkScroll: false;
+}
+
+const scrollBehavior = getScrollBehavior(scrollBehaviorOptions);
 ```
 
 ## Tests
@@ -63,9 +93,9 @@ $ npm test -- --watch # during development
 
 ## Demo
 
-A demo [Next.js](https://nextjs.org/) project is available in the [`/demo`](./demo) folder so you can try out this component.
+A demo [Nextjs](https://nextjs.org/) project is available in the [`/demo`](./demo) folder so you can try out this component.
 
-First, build the `{package-name}` project with:
+First, build the `next-scroll-restoration` project with:
 
 ```sh
 $ npm run build
@@ -83,12 +113,6 @@ To run the demo, do the following inside the demo's folder:
 $ npm i
 $ npm run dev
 ```
-
-## FAQ
-
-### I can't override the component's CSS, what's happening?
-
-There is an ongoing [next.js issue](https://github.com/zeit/next.js/issues/10148) about the loading order of modules and global CSS in development mode. This has been fixed in [v9.3.6-canary.0](https://github.com/zeit/next.js/releases/tag/v9.3.6-canary.0), so you can either update `next.js` to a version higher than `v9.3.5`, or simply increase the CSS specificity when overriding component's classes, as we did in the [`demo`](./demo/pages/index.module.css), e.g. having the page or section CSS wrap the component's one.
 
 ## License
 
