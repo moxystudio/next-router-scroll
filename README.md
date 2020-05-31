@@ -74,7 +74,7 @@ The function accepts an `options` object argument.
 
 | Option Key | Default | Description |
 | ---------- | ------- | ----------- |
-| `disableNextLinkScroll` | `true` | `disableNextLinkScroll` | `true` | Enables or disables changing the default `scroll` prop of Next.js `<Link />` component |
+| `disableNextLinkScroll` | `true` | Enables or disables changing the default `scroll` prop of Next.js `<Link />` component |
 
 ```js
 const scrollBehaviorOptions = {
