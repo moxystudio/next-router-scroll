@@ -4,6 +4,7 @@ import getScrollBehavior from '../src/scroll-behavior';
 let scrollBehavior;
 
 afterEach(() => {
+    scrollBehavior.stop();
     window.pageYOffset = 0;
 });
 
