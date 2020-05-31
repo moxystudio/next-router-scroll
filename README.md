@@ -1,25 +1,25 @@
-# next-scroll-restoration
+# next-scroll-behavior
 
 [![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][build-status-image]][build-status-url] [![Coverage Status][codecov-image]][codecov-url] [![Dependency status][david-dm-image]][david-dm-url] [![Dev Dependency status][david-dm-dev-image]][david-dm-dev-url]
 
-[npm-url]:https://npmjs.org/package/@moxy/next-scroll-restoration
-[downloads-image]:https://img.shields.io/npm/dm/@moxy/next-scroll-restoration.svg
-[npm-image]:https://img.shields.io/npm/v/@moxy/next-scroll-restoration.svg
-[build-status-url]:https://github.com/moxystudio/next-scroll-restoration/actions
-[build-status-image]:https://img.shields.io/github/workflow/status/moxystudio/next-scroll-restoration/Node%20CI/master
-[codecov-url]:https://codecov.io/gh/moxystudio/next-scroll-restoration
-[codecov-image]:https://img.shields.io/codecov/c/github/moxystudio/next-scroll-restoration/master.svg
-[david-dm-url]:https://david-dm.org/moxystudio/next-scroll-restoration
-[david-dm-image]:https://img.shields.io/david/moxystudio/next-scroll-restoration.svg
-[david-dm-dev-url]:https://david-dm.org/moxystudio/next-scroll-restoration?type=dev
-[david-dm-dev-image]:https://img.shields.io/david/dev/moxystudio/next-scroll-restoration.svg
+[npm-url]:https://npmjs.org/package/@moxy/next-scroll-behavior
+[downloads-image]:https://img.shields.io/npm/dm/@moxy/next-scroll-behavior.svg
+[npm-image]:https://img.shields.io/npm/v/@moxy/next-scroll-behavior.svg
+[build-status-url]:https://github.com/moxystudio/next-scroll-behavior/actions
+[build-status-image]:https://img.shields.io/github/workflow/status/moxystudio/next-scroll-behavior/Node%20CI/master
+[codecov-url]:https://codecov.io/gh/moxystudio/next-scroll-behavior
+[codecov-image]:https://img.shields.io/codecov/c/github/moxystudio/next-scroll-behavior/master.svg
+[david-dm-url]:https://david-dm.org/moxystudio/next-scroll-behavior
+[david-dm-image]:https://img.shields.io/david/moxystudio/next-scroll-behavior.svg
+[david-dm-dev-url]:https://david-dm.org/moxystudio/next-scroll-behavior?type=dev
+[david-dm-dev-image]:https://img.shields.io/david/dev/moxystudio/next-scroll-behavior.svg
 
-`next-scroll-restoration` provides a built in custom scroll behavior that aims to make it easy to restore the user scroll position based on location history.
+`next-scroll-behavior` provides a built in custom scroll behavior that aims to make it easy to restore the user scroll position based on location history.
 
 ## Installation
 
 ```sh
-$ npm install @moxy/next-scroll-restoration
+$ npm install @moxy/next-scroll-behavior
 ```
 
 This library is written in modern JavaScript and is published in both CommonJS and ES module transpiled variants. If you target older browsers please make sure to transpile accordingly.
@@ -28,7 +28,7 @@ This library is written in modern JavaScript and is published in both CommonJS a
 
 There are some cases where you need to take control on how your application scroll is handled; namely, you may want to restore scroll when user is navigating within your application pages, but you need to do extra work before or after the page has changed, either by using some sort of page transition or any other feature.
 
-`next-scroll-restoration` provides a built-in custom scroll behavior that aims to make it easy to restore the user scroll position based on location history.
+`next-scroll-behavior` provides a built-in custom scroll behavior that aims to make it easy to restore the user scroll position based on location history.
 
 This package is built on top of [scroll-behavior](https://www.npmjs.com/package/scroll-behavior) and it's meant to be used in `Nextjs` applications.
 
@@ -95,7 +95,7 @@ $ npm test -- --watch # during development
 
 A demo [Nextjs](https://nextjs.org/) project is available in the [`/demo`](./demo) folder so you can try out this component.
 
-First, build the `next-scroll-restoration` project with:
+First, build the `next-scroll-behavior` project with:
 
 ```sh
 $ npm run build
