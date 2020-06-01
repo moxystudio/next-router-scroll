@@ -1,6 +1,6 @@
 {
   "name": "@moxy/next-scroll-behavior",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "A package that provides a built-in custom scroll behavior that aims to make it easy to restore the user scroll position based on location history.",
   "main": "lib/index.js",
   "module": "es/index.js",
