@@ -6,8 +6,7 @@
   "module": "es/index.js",
   "files": [
     "lib",
-    "es",
-    "dist"
+    "es"
   ],
   "homepage": "https://github.com/moxystudio/next-scroll-behavior#readme",
   "author": "Afonso Reis <antonio.reis@moxy.studio>",
