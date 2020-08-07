@@ -33,11 +33,11 @@
     "postrelease": "git push --follow-tags origin HEAD && npm publish"
   },
   "peerDependencies": {
+    "next": "^9.4.1",
     "react-dom": "^16.8.0",
     "react": "^16.8.0"
   },
   "dependencies": {
-    "next": "^9.4.1",
     "history": "^3.0.0",
     "prop-types": "^15.7.2",
     "scroll-behavior": "^0.9.11"
