@@ -1,5 +1,6 @@
 .pageTwo {
     min-height: 450vh;
+    overflow: hidden;
 
     & h2 {
         position: absolute;

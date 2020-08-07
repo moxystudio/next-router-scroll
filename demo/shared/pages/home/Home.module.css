@@ -1,5 +1,6 @@
 .home {
     min-height: 350vh;
+    overflow: hidden;
 
     & h2 {
         position: absolute;

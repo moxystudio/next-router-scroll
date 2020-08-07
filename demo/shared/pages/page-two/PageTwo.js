@@ -5,7 +5,7 @@ import styles from './PageTwo.module.css';
 
 const PageTwo = () => (
     <div className={ styles.pageTwo }>
-        <h1>next-scroll-behavior</h1>
+        <h1>Page 2</h1>
         <PageLinks />
         <h2>100vh</h2>
         <h2>300vh</h2>

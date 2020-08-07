@@ -4,8 +4,6 @@ import PageSwapper from '@moxy/react-page-swapper';
 import getScrollBehavior from '@moxy/next-scroll-behavior';
 import PageTransition from '../shared/modules/react-page-transition';
 
-import styles from './_app.module.css';
-
 const App = ({ Component, pageProps }) => {
     const scrollBehaviorRef = useRef();
 
@@ -22,7 +20,6 @@ const App = ({ Component, pageProps }) => {
     return (
         <PageSwapper
             updateScroll={ updateScroll }
-            className={ styles.pageSwapper }
             node={ <Component { ...pageProps } /> }>
             { (props) => <PageTransition { ...props } /> }
         </PageSwapper>

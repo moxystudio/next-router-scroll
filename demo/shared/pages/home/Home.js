@@ -5,7 +5,7 @@ import styles from './Home.module.css';
 
 const Home = () => (
     <div className={ styles.home }>
-        <h1>next-scroll-behavior</h1>
+        <h1>Home</h1>
         <PageLinks />
         <h2>100vh</h2>
         <h2>200vh</h2>
