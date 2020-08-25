@@ -1,25 +1,34 @@
 {
-  "name": "@moxy/next-scroll-behavior",
-  "version": "1.0.2",
-  "description": "A package that provides a built-in custom scroll behavior that aims to make it easy to restore the user scroll position based on location history.",
+  "name": "@moxy/next-router-scroll",
+  "version": "0.0.0",
+  "description": "Take control of when scroll is updated and restored in your Next.js projects",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
     "lib",
     "es"
   ],
-  "homepage": "https://github.com/moxystudio/next-scroll-behavior#readme",
+  "browser": {
+    "lib/scroll-behavior/NextScrollBehavior.node.js": "./lib/scroll-behavior/NextScrollBehavior.browser.js",
+    "es/scroll-behavior/NextScrollBehavior.node.js": "./es/scroll-behavior/NextScrollBehavior.browser.js"
+  },
+  "homepage": "https://github.com/moxystudio/next-router-scroll#readme",
   "author": "Afonso Reis <antonio.reis@moxy.studio>",
   "license": "MIT",
   "keywords": [
-    "template"
+    "next",
+    "nextjs",
+    "router",
+    "scroll",
+    "scroll-behavior",
+    "restore"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/moxystudio/next-scroll-behavior.git"
+    "url": "git+https://github.com/moxystudio/next-router-scroll.git"
   },
   "bugs": {
-    "url": "https://github.com/moxystudio/next-scroll-behavior/issues"
+    "url": "https://github.com/moxystudio/next-router-scroll/issues"
   },
   "scripts": {
     "dev": "onchange -i -k  \"src\" -- npm run build",
@@ -39,32 +48,37 @@
   },
   "dependencies": {
     "history": "^3.0.0",
+    "hoist-non-react-statics": "^3.3.2",
+    "lodash": "^4.17.20",
     "prop-types": "^15.7.2",
-    "scroll-behavior": "^0.9.11"
+    "scroll-behavior": "^0.11.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.4",
-    "@commitlint/config-conventional": "^8.0.0",
+    "@commitlint/config-conventional": "^9.1.2",
     "@moxy/babel-preset": "^3.2.1",
-    "@moxy/eslint-config-babel": "^12.0.0",
-    "@moxy/eslint-config-base": "^12.0.0",
-    "@moxy/eslint-config-jest": "^12.0.0",
-    "@moxy/eslint-config-react": "^12.0.0",
-    "@moxy/jest-config": "^4.0.1",
+    "@moxy/eslint-config-babel": "^13.0.0",
+    "@moxy/eslint-config-base": "^13.0.0",
+    "@moxy/eslint-config-jest": "^13.0.1",
+    "@moxy/eslint-config-react": "^13.0.0",
+    "@moxy/jest-config-base": "^5.0.0",
+    "@moxy/jest-config-testing-library": "^5.1.0",
+    "@moxy/jest-config-web": "^5.0.0",
     "@moxy/postcss-preset": "^4.4.2",
     "@testing-library/react": "^10.0.2",
-    "commitlint": "^8.3.5",
+    "browser-resolve": "^2.0.0",
+    "commitlint": "^9.1.2",
     "cross-env": "^7.0.2",
-    "eslint": "^6.0.0",
+    "eslint": "^7.7.0",
     "husky": "^4.0.10",
-    "jest": "^25.2.6",
-    "lint-staged": "^10.0.2",
+    "jest": "^26.4.2",
+    "lint-staged": "^10.2.13",
     "next": "^9.4.1",
     "onchange": "^7.0.1",
-    "react-dom": "^16.8.6",
     "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "rimraf": "^3.0.2",
-    "standard-version": "^7.0.0"
+    "standard-version": "^9.0.0"
   }
 }

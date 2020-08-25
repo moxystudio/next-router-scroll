@@ -1,4 +1,6 @@
 .fade {
+    height: 100%;
+
     &.enter {
         opacity: 0;
     }

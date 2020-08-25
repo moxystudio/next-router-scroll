@@ -1,21 +1,11 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect, useCallback, useRef } from 'react';
+import React from 'react';
 import PageSwapper from '@moxy/react-page-swapper';
-import getScrollBehavior from '@moxy/next-scroll-behavior';
-import PageTransition from '../shared/modules/react-page-transition';
+import { RouterScrollProvider, useRouterScroll } from '@moxy/next-router-scroll';
+import PageTransition from '../components/page-transition';
 
-const App = ({ Component, pageProps }) => {
-    const scrollBehaviorRef = useRef();
-
-    useEffect(() => {
-        scrollBehaviorRef.current = getScrollBehavior();
-
-        return () => {
-            scrollBehaviorRef.current.stop();
-        };
-    }, []);
-
-    const updateScroll = useCallback(() => scrollBehaviorRef.current.updateScroll(), []);
+const AppInner = ({ Component, pageProps }) => {
+    const { updateScroll } = useRouterScroll();
 
     return (
         <PageSwapper
@@ -25,5 +15,11 @@ const App = ({ Component, pageProps }) => {
         </PageSwapper>
     );
 };
+
+const App = (props) => (
+    <RouterScrollProvider>
+        <AppInner { ...props } />
+    </RouterScrollProvider>
+);
 
 export default App;

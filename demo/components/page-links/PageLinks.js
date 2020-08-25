@@ -12,8 +12,13 @@ const PageLinks = () => (
                 </Link>
             </li>
             <li>
-                <Link href="/page-two">
-                    <a>PageTwo</a>
+                <Link href="/another-page">
+                    <a>Another Page</a>
+                </Link>
+            </li>
+            <li>
+                <Link href="/async-page">
+                    <a>Async Page</a>
                 </Link>
             </li>
         </ul>

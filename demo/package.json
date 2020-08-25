@@ -7,7 +7,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/moxystudio/next-scroll-behavior.git"
+    "url": "git+https://github.com/moxystudio/next-router-scroll.git"
   },
   "scripts": {
     "dev": "onchange -i -k  \"../lib\" \"../dist\" -- next",
@@ -16,9 +16,9 @@
     "export": "next export"
   },
   "dependencies": {
-    "@moxy/next-scroll-behavior": "file:..",
-    "@moxy/react-page-swapper": "^1.0.0",
-    "next": "^9.4.1",
+    "@moxy/next-router-scroll": "file:..",
+    "@moxy/react-page-swapper": "^1.1.1",
+    "next": "^9.5.2",
     "react-transition-group": "^4.4.1"
   },
   "devDependencies": {
