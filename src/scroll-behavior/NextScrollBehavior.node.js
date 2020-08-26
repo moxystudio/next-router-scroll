@@ -1,1 +1,5 @@
-export default class NextScrollBehaviorMock {}
+export default class NextScrollBehaviorMock {
+    updateScroll() {}
+    registerElement() {}
+    unregisterElement() {}
+}

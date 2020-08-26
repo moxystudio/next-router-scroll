@@ -14,11 +14,6 @@ module.exports = compose(
             './jest.setup.js',
         ];
 
-        config.moduleNameMapper = {
-            'NextScrollBehavior\\.node$': '<rootDir>/src/scroll-behavior/NextScrollBehavior.browser.js',
-            ...config.moduleNameMapper,
-        };
-
         return config;
     },
 );

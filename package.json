@@ -8,10 +8,6 @@
     "lib",
     "es"
   ],
-  "browser": {
-    "lib/scroll-behavior/NextScrollBehavior.node.js": "./lib/scroll-behavior/NextScrollBehavior.browser.js",
-    "es/scroll-behavior/NextScrollBehavior.node.js": "./es/scroll-behavior/NextScrollBehavior.browser.js"
-  },
   "homepage": "https://github.com/moxystudio/next-router-scroll#readme",
   "author": "Afonso Reis <antonio.reis@moxy.studio>",
   "license": "MIT",

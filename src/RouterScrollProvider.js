@@ -29,9 +29,9 @@ const useScrollBehavior = (shouldUpdateScroll) => {
 
     shouldUpdateScrollRef.current = shouldUpdateScroll;
 
-    if (!scrollBehaviorRef.current && typeof window !== 'undefined') {
+    if (!scrollBehaviorRef.current) {
         scrollBehaviorRef.current = new NextScrollBehavior(
-            (...args) => shouldUpdateScrollRef.current?.(...args),
+            (...args) => shouldUpdateScrollRef.current(...args),
         );
     }
 
@@ -50,9 +50,9 @@ const ScrollBehaviorProvider = ({ disableNextLinkScroll, shouldUpdateScroll, chi
 
     // Create facade to use as the provider value.
     const providerValue = useMemo(() => ({
-        updateScroll: scrollBehavior ? scrollBehavior.updateScroll.bind(scrollBehavior) : () => {},
-        registerElement: scrollBehavior ? scrollBehavior.registerElement.bind(scrollBehavior) : () => {},
-        unregisterElement: scrollBehavior ? scrollBehavior.unregisterElement.bind(scrollBehavior) : () => {},
+        updateScroll: scrollBehavior.updateScroll.bind(scrollBehavior),
+        registerElement: scrollBehavior.registerElement.bind(scrollBehavior),
+        unregisterElement: scrollBehavior.unregisterElement.bind(scrollBehavior),
     }), [scrollBehavior]);
 
     return (
