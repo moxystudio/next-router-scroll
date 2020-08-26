@@ -12,7 +12,6 @@ const ROUTER_SYMBOL = Symbol('@moxy/next-router-scroll');
 export default class NextScrollBehavior extends ScrollBehavior {
     _context;
     _prevContext;
-    _originalBeforePopState;
     _debounceSavePositionMap = new Map();
 
     constructor(shouldUpdateScroll) {
@@ -55,10 +54,6 @@ export default class NextScrollBehavior extends ScrollBehavior {
         // See: https://github.com/gatsbyjs/gatsby/issues/11355 and https://github.com/taion/scroll-behavior/issues/128
         this._setScrollRestoration = this._setScrollRestorationWithoutUserAgentSniffing;
         this._setScrollRestoration();
-
-        // Monkey-patch _savePosition so that writes to storage are debounced.
-        // See: https://github.com/taion/scroll-behavior/issues/136
-        this._setupDebouncedSavePosition();
 
         Object.defineProperty(Router, ROUTER_SYMBOL, {
             value: true,
@@ -133,24 +128,22 @@ export default class NextScrollBehavior extends ScrollBehavior {
         }
     }
 
-    _setupDebouncedSavePosition() {
-        const originalSavePosition = this._savePosition;
+    _savePosition(key, element) {
+        // Override _savePosition so that writes to storage are debounced.
+        // See: https://github.com/taion/scroll-behavior/issues/136
+        let savePosition = this._debounceSavePositionMap.get(key);
 
-        this._savePosition = (key, element) => {
-            let savePosition = this._debounceSavePositionMap.get(key);
+        if (!savePosition) {
+            savePosition = debounce(
+                super._savePosition.bind(this),
+                SAVE_POSITION_DEBOUNCE_TIME,
+                { leading: true },
+            );
 
-            if (!savePosition) {
-                savePosition = debounce(
-                    originalSavePosition.bind(this),
-                    SAVE_POSITION_DEBOUNCE_TIME,
-                    { leading: true },
-                );
+            this._debounceSavePositionMap.set(key, savePosition);
+        }
 
-                this._debounceSavePositionMap.set(key, savePosition);
-            }
-
-            savePosition(key, element);
-        };
+        savePosition(key, element);
     }
 
     _cleanupDebouncedSavePosition() {
