@@ -13,7 +13,7 @@ export default class StateStorage {
     }
 
     getStateKey(location, key) {
-        const locationKey = location.key;
+        const locationKey = location.key ?? '_default';
         const stateKeyBase = `${STATE_KEY_PREFIX}${locationKey}`;
 
         return key == null ? stateKeyBase : `${stateKeyBase}|${key}`;

@@ -1,4 +1,4 @@
-.pageTwo {
+.anotherPage {
     min-height: 450vh;
     overflow: hidden;
 
@@ -16,6 +16,7 @@
     & h2:nth-of-type(2) {
         top: 300vh;
     }
+
     & h2:nth-of-type(3) {
         top: 400vh
     }
