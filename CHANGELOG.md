@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/moxystudio/next-router-scroll/compare/v2.0.0...v2.0.1) (2020-08-26)
+
+
+### Bug Fixes
+
+* issues in SSR mode ([a1f4719](https://github.com/moxystudio/next-router-scroll/commit/a1f4719fc7de5b5d56d3b1cac825af4527bf5aa8))
+
 ## [2.0.0](https://github.com/moxystudio/next-router-scroll/compare/v1.0.2...v2.0.0) (2020-08-26)
 
 
