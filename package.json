@@ -1,6 +1,6 @@
 {
   "name": "@moxy/next-router-scroll",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Take control of when scroll is updated and restored in your Next.js projects",
   "main": "lib/index.js",
   "module": "es/index.js",
