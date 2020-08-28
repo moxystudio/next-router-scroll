@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.3](https://github.com/moxystudio/next-router-scroll/compare/v2.0.2...v2.0.3) (2020-08-28)
+
+
+### Bug Fixes
+
+* make unregisterElement idempotent to play better with react ([609fddc](https://github.com/moxystudio/next-router-scroll/commit/609fddca2265a208bdd022c8500e9cd946b7634c))
+
 ### [2.0.2](https://github.com/moxystudio/next-router-scroll/compare/v2.0.1...v2.0.2) (2020-08-28)
 
 
