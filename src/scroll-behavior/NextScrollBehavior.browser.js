@@ -7,7 +7,6 @@ import StateStorage from './StateStorage';
 setupHistory();
 
 const SAVE_POSITION_DEBOUNCE_TIME = 150;
-const ROUTER_SYMBOL = Symbol('@moxy/next-router-scroll');
 
 export default class NextScrollBehavior extends ScrollBehavior {
     _context;
@@ -15,10 +14,6 @@ export default class NextScrollBehavior extends ScrollBehavior {
     _debounceSavePositionMap = new Map();
 
     constructor(shouldUpdateScroll) {
-        if (Router[ROUTER_SYMBOL]) {
-            throw new Error('Another NextScrollBehavior instance is already attached to Next.js router');
-        }
-
         setupRouter();
 
         super({
@@ -54,12 +49,6 @@ export default class NextScrollBehavior extends ScrollBehavior {
         // See: https://github.com/gatsbyjs/gatsby/issues/11355 and https://github.com/taion/scroll-behavior/issues/128
         this._setScrollRestoration = this._setScrollRestorationWithoutUserAgentSniffing;
         this._setScrollRestoration();
-
-        Object.defineProperty(Router, ROUTER_SYMBOL, {
-            value: true,
-            writable: true,
-            configurable: true,
-        });
     }
 
     updateScroll(prevContext, context) {
@@ -83,8 +72,6 @@ export default class NextScrollBehavior extends ScrollBehavior {
         // Need to unregister elements since ScrollBehavior doesn't do that for us.
         // See: https://github.com/taion/scroll-behavior/issues/406
         Object.keys(this._scrollElements).forEach((key) => this.unregisterElement(key));
-
-        delete Router[ROUTER_SYMBOL];
     }
 
     registerElement(key, element, shouldUpdateScroll, context) {

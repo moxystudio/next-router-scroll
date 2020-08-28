@@ -83,12 +83,6 @@ describe('constructor()', () => {
         expect(history.scrollRestoration).toBe('manual');
     });
 
-    it('should throw when creating two instances', () => {
-        scrollBehavior = new NextScrollBehavior();
-
-        expect(() => new NextScrollBehavior()).toThrow(/is already attached/);
-    });
-
     it('should set current context correctly', () => {
         Router.pathname = '/bar';
         Router.asPath = '/bar';
@@ -113,14 +107,6 @@ describe('stop()', () => {
         scrollBehavior.stop();
 
         expect(scrollBehavior.unregisterElement).toHaveBeenCalledTimes(1);
-    });
-
-    it('should allow creating a new instance aftewards', () => {
-        const scrollBehavior = new NextScrollBehavior();
-
-        scrollBehavior.stop();
-
-        expect(() => new NextScrollBehavior()).not.toThrow();
     });
 
     it('should cancel all ongoing _setPosition debouncers', async () => {
