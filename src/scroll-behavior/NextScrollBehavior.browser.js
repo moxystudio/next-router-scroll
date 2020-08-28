@@ -84,6 +84,11 @@ export default class NextScrollBehavior extends ScrollBehavior {
     }
 
     unregisterElement(key) {
+        // Make the function idempotent instead of throwing, so that it plays better in React and fast refresh.
+        if (!this._scrollElements[key]) {
+            return;
+        }
+
         super.unregisterElement(key);
 
         // Cleanup ongoing debounce if any.

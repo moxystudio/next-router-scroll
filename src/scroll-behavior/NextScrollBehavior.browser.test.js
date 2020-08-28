@@ -275,6 +275,12 @@ describe('unregisterElement()', () => {
         expect(mockStateStorage.save).toHaveBeenCalledTimes(1);
     });
 
+    it('should be idempotent', () => {
+        scrollBehavior = new NextScrollBehavior();
+
+        expect(() => scrollBehavior.unregisterElement('foo')).not.toThrow();
+    });
+
     it('should call super', () => {
         const element = document.createElement('div');
 
