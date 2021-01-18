@@ -38,7 +38,7 @@
     "postrelease": "git push --follow-tags origin HEAD && npm publish"
   },
   "peerDependencies": {
-    "next": "^9.4.1",
+    "next": ">=9 <=10",
     "react-dom": "^16.8.0",
     "react": "^16.8.0"
   },
@@ -52,7 +52,7 @@
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.4",
-    "@commitlint/config-conventional": "^9.1.2",
+    "@commitlint/config-conventional": "^11.0.0",
     "@moxy/babel-preset": "^3.2.1",
     "@moxy/eslint-config-babel": "^13.0.0",
     "@moxy/eslint-config-base": "^13.0.0",
@@ -62,19 +62,18 @@
     "@moxy/jest-config-testing-library": "^5.1.0",
     "@moxy/jest-config-web": "^5.0.0",
     "@moxy/postcss-preset": "^4.4.2",
-    "@testing-library/react": "^10.0.2",
+    "@testing-library/react": "^11.2.3",
     "browser-resolve": "^2.0.0",
-    "commitlint": "^9.1.2",
+    "commitlint": "^11.0.0",
     "cross-env": "^7.0.2",
     "eslint": "^7.7.0",
     "husky": "^4.0.10",
     "jest": "^26.4.2",
     "lint-staged": "^10.2.13",
-    "next": "^9.4.1",
+    "next": "^10.0.0",
     "onchange": "^7.0.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "rimraf": "^3.0.2",
     "standard-version": "^9.0.0"
   }
 }
