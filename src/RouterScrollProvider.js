@@ -7,14 +7,19 @@ import NextScrollBehavior from './scroll-behavior';
 const Provider = ScrollBehaviorContext.Provider;
 
 const useDisableNextLinkScroll = (disableNextLinkScroll) => {
+    const originalDefaultPropsRef = useRef(Link.defaultProps);
+    const appliedDisableScroll = useRef(false);
+
+    if (!appliedDisableScroll.current && disableNextLinkScroll) {
+        Link.defaultProps = { ...Link.defaultProps, scroll: false };
+    }
+
     useEffect(() => {
         if (!disableNextLinkScroll) {
             return;
         }
 
-        const originalDefaultProps = Link.defaultProps;
-
-        Link.defaultProps = { ...Link.defaultProps, scroll: false };
+        const originalDefaultProps = originalDefaultPropsRef.current;
 
         return () => {
             Link.defaultProps = originalDefaultProps;
