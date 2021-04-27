@@ -138,6 +138,28 @@ Call `updateScroll` function whenever you want to update the scroll. You may opt
 
 Please note that `prevContext` and `context` have default values and any values you pass will be mixed with the default ones.
 
+**Use With Async Rendering**:
+
+If you're asyncronously loading DOM elements and need to wait for an element you can utilize [React's approach for measuring DOM nodes](https://reactjs.org/docs/hooks-faq.html#how-can-i-measure-a-dom-node). Here is an example of what that could look like:
+
+```ts
+const MyComponent = () => {
+  const divRef = useCallback(
+    (node) => {
+      if (node !== null) {
+        updateScroll();
+      }
+    },
+    [updateScroll]
+  );
+
+  // const someAsyncData = await Promise(/*...*/);
+  return (
+    {someAsyncData && <div ref={divRef}>hi</div>}
+  );
+}
+```
+
 #### registerElement(key, element, shouldUpdateScroll?, context?)
 
 Call `registerElement` method to register an element other than window to have managed scroll behavior. Each of these elements needs to be given a unique key at registration time, and can be given an optional `shouldUpdateScroll` callback that behaves as above. This method can optionally be called with the current context if applicable, to set up the element's initial scroll position.
