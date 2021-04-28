@@ -144,14 +144,12 @@ If you're asyncronously loading DOM elements and need to wait for an element you
 
 ```ts
 const MyComponent = () => {
-  const divRef = useCallback(
-    (node) => {
-      if (node !== null) {
-        updateScroll();
-      }
-    },
-    [updateScroll]
-  );
+    const divRef = useCallback((node) => {
+        if (node) {
+            updateScroll();
+        }
+    }, [updateScroll]
+);
 
   // const someAsyncData = await Promise(/*...*/);
   return (
