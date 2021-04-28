@@ -151,11 +151,9 @@ const MyComponent = () => {
     }, [updateScroll]
 );
 
-  // const someAsyncData = await Promise(/*...*/);
-  return (
-    {someAsyncData && <div ref={divRef}>hi</div>}
-  );
-}
+
+    return someCondition ? <div ref={ divRef }>hi</div> : null;
+};
 ```
 
 #### registerElement(key, element, shouldUpdateScroll?, context?)
