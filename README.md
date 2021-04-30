@@ -142,14 +142,14 @@ Please note that `prevContext` and `context` have default values and any values 
 
 If you're asyncronously loading DOM elements and need to wait for an element you can utilize [React's approach for measuring DOM nodes](https://reactjs.org/docs/hooks-faq.html#how-can-i-measure-a-dom-node). Here is an example of what that could look like:
 
-```ts
+```js
 const MyComponent = () => {
+    const { updateScroll } = useRouterScroll();
     const divRef = useCallback((node) => {
         if (node) {
             updateScroll();
         }
-    }, [updateScroll]
-);
+    }, [updateScroll]);
 
 
     return someCondition ? <div ref={ divRef }>hi</div> : null;
