@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/moxystudio/next-router-scroll/compare/v2.1.1...v2.2.0) (2021-06-24)
+
+
+### Features
+
+* add next 11 compat ([#9](https://github.com/moxystudio/next-router-scroll/issues/9)) ([787b1ca](https://github.com/moxystudio/next-router-scroll/commit/787b1ca9368280935d58eb16842b5316a459ea37))
+
 ### [2.1.1](https://github.com/moxystudio/next-router-scroll/compare/v2.1.0...v2.1.1) (2021-03-23)
 
 ## [2.1.0](https://github.com/moxystudio/next-router-scroll/compare/v2.0.3...v2.1.0) (2021-01-18)
