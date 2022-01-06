@@ -5,6 +5,7 @@ import RouterScrollContext from './context';
 import RouterScrollProvider from './RouterScrollProvider';
 
 let mockNextScrollBehavior;
+let mockStateStorage;
 
 jest.mock('./scroll-behavior', () => {
     const NextScrollBehavior = jest.requireActual('./scroll-behavior');
@@ -23,6 +24,23 @@ jest.mock('./scroll-behavior', () => {
     }
 
     return SpiedNextScrollBehavior;
+});
+
+jest.mock('./scroll-behavior/StateStorage', () => {
+    const StateStorage = jest.requireActual('./scroll-behavior/StateStorage');
+
+    class SpiedStateStorage extends StateStorage {
+        constructor(...args) {
+            super(...args);
+
+            mockStateStorage = this; // eslint-disable-line consistent-this
+
+            jest.spyOn(this, 'save');
+            jest.spyOn(this, 'read');
+        }
+    }
+
+    return SpiedStateStorage;
 });
 
 afterEach(() => {
@@ -172,4 +190,52 @@ it('should allow changing shouldUpdateScroll', () => {
 
     expect(shouldUpdateScroll1).toHaveBeenCalledTimes(1);
     expect(shouldUpdateScroll2).toHaveBeenCalledTimes(1);
+});
+
+it('allows setting restoreSameLocation', () => {
+    const MyComponent = () => {
+        useContext(RouterScrollContext);
+
+        return null;
+    };
+
+    render(
+        <RouterScrollProvider>
+            <MyComponent />
+        </RouterScrollProvider>,
+    );
+
+    expect(mockStateStorage.restoreSameLocation).toBe(false);
+
+    render(
+        <RouterScrollProvider restoreSameLocation>
+            <MyComponent />
+        </RouterScrollProvider>,
+    );
+
+    expect(mockStateStorage.restoreSameLocation).toBe(true);
+});
+
+it('allows changing restoreSameLocation', () => {
+    const MyComponent = () => {
+        useContext(RouterScrollContext);
+
+        return null;
+    };
+
+    const { rerender } = render(
+        <RouterScrollProvider>
+            <MyComponent />
+        </RouterScrollProvider>,
+    );
+
+    expect(mockStateStorage.restoreSameLocation).toBe(false);
+
+    rerender(
+        <RouterScrollProvider restoreSameLocation>
+            <MyComponent />
+        </RouterScrollProvider>,
+    );
+
+    expect(mockStateStorage.restoreSameLocation).toBe(true);
 });
