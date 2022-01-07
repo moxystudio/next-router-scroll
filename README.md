@@ -114,6 +114,13 @@ Default: true
 
 True to set Next.js Link default `scroll` property to `false`, false otherwise. Since the goal of this package is to manually control the scroll, you don't want Next.js default behavior of scrolling to top when clicking links.
 
+#### restoreSameLocation?
+
+Type: `boolean`   
+Default: false
+
+True to enable scroll restoration when the same location is navigated. By default, only going backwards and forward in the browser history will cause the scroll position to be restored.
+
 #### children
 
 Type: `ReactNode`

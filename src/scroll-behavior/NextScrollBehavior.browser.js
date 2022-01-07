@@ -12,9 +12,11 @@ export default class NextScrollBehavior extends ScrollBehavior {
     _context;
     _prevContext;
     _debounceSavePositionMap = new Map();
+    _stateStorage;
 
-    constructor(shouldUpdateScroll) {
+    constructor(shouldUpdateScroll, restoreSameLocation = false) {
         setupRouter();
+        const stateStorage = new StateStorage({ restoreSameLocation });
 
         super({
             addNavigationListener: (callback) => {
@@ -37,10 +39,11 @@ export default class NextScrollBehavior extends ScrollBehavior {
                 };
             },
             getCurrentLocation: () => this._context.location,
-            stateStorage: new StateStorage(),
+            stateStorage,
             shouldUpdateScroll,
         });
 
+        this._stateStorage = stateStorage;
         this._context = this._createContext();
         this._prevContext = null;
 
@@ -62,6 +65,10 @@ export default class NextScrollBehavior extends ScrollBehavior {
         };
 
         super.updateScroll(prevContext, context);
+    }
+
+    setRestoreSameLocation(newValue = false) {
+        this._stateStorage.restoreSameLocation = newValue;
     }
 
     stop() {

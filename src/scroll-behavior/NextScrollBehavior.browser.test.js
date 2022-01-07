@@ -73,6 +73,12 @@ describe('constructor()', () => {
         expect(scrollBehavior._shouldUpdateScroll).toBe(shouldUpdateScroll);
     });
 
+    it('should forward restoreSameLocation to StateStorage', () => {
+        scrollBehavior = new NextScrollBehavior(() => {}, true);
+
+        expect(mockStateStorage.restoreSameLocation).toBe(true);
+    });
+
     it('should set history.scrollRestoration to manual, even on Safari iOS', () => {
         // eslint-disable-next-line max-len
         navigator.userAgent = 'Mozilla/5.0 (iPhone; CPU iPhone OS 12_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0 Mobile/15E148 Safari/605.1';
@@ -369,6 +375,58 @@ it('should update scroll correctly based on history changes', async () => {
 
     // Go to next page
     history.forward();
+    Router.events.emit('routeChangeComplete', '/');
+    await sleep(10);
+
+    location.key = history.state.locationKey;
+    scrollBehavior.updateScroll();
+
+    expect(scrollBehavior.scrollToTarget).toHaveBeenNthCalledWith(4, window, [0, 123]);
+});
+
+it('should restore scroll position if same url is opened', async () => {
+    scrollBehavior = new NextScrollBehavior(undefined, true);
+
+    jest.spyOn(scrollBehavior, 'scrollToTarget');
+    Object.defineProperty(scrollBehavior, '_numWindowScrollAttempts', {
+        get: () => 1000,
+        set: () => {},
+    });
+
+    // First page
+    history.replaceState({ as: '/' }, '', '/');
+    Router.events.emit('routeChangeComplete', '/');
+    window.pageYOffset = 0;
+    scrollBehavior.updateScroll();
+
+    await sleep(10);
+
+    expect(scrollBehavior.scrollToTarget).toHaveBeenNthCalledWith(1, window, [0, 0]);
+
+    // Navigate to new page & scroll
+    history.pushState({ as: '/page2' }, '', '/page2');
+    Router.events.emit('routeChangeComplete', '/');
+    window.pageYOffset = 123;
+    window.dispatchEvent(new CustomEvent('scroll'));
+
+    await sleep(200);
+
+    scrollBehavior.updateScroll();
+
+    expect(scrollBehavior.scrollToTarget).toHaveBeenNthCalledWith(2, window, [0, 123]);
+
+    // Go to previous page
+    history.pushState({ as: '/' }, '', '/');
+    Router.events.emit('routeChangeComplete', '/');
+    await sleep(10);
+
+    location.key = history.state.locationKey;
+    scrollBehavior.updateScroll();
+
+    expect(scrollBehavior.scrollToTarget).toHaveBeenNthCalledWith(3, window, [0, 0]);
+
+    // Go to next page
+    history.pushState({ as: '/page2' }, '', '/page2');
     Router.events.emit('routeChangeComplete', '/');
     await sleep(10);
 

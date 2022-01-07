@@ -46,6 +46,7 @@
     "history": "^3.0.0",
     "hoist-non-react-statics": "^3.3.2",
     "lodash": "^4.17.21",
+    "md5": "^2.3.0",
     "prop-types": "^15.7.2",
     "scroll-behavior": "^0.11.0"
   },

@@ -27,31 +27,38 @@ const useDisableNextLinkScroll = (disableNextLinkScroll) => {
     }, [disableNextLinkScroll]);
 };
 
-const useScrollBehavior = (shouldUpdateScroll) => {
+const useScrollBehavior = (shouldUpdateScroll, restoreSameLocation) => {
     // Create NextScrollBehavior instance once.
     const shouldUpdateScrollRef = useRef();
     const scrollBehaviorRef = useRef();
 
     shouldUpdateScrollRef.current = shouldUpdateScroll;
 
+    useEffect(() => {
+        if (scrollBehaviorRef.current) {
+            scrollBehaviorRef.current.setRestoreSameLocation(restoreSameLocation);
+        }
+    }, [restoreSameLocation]);
+
     if (!scrollBehaviorRef.current) {
         scrollBehaviorRef.current = new NextScrollBehavior(
             (...args) => shouldUpdateScrollRef.current(...args),
+            restoreSameLocation,
         );
     }
 
-    // Destroy NextScrollBehavior instance when unmonting.
-    useEffect(() => () => scrollBehaviorRef.current.stop(), []);
+    // Destroy NextScrollBehavior instance when unmounting.
+    useEffect(() => () => scrollBehaviorRef.current?.stop(), []);
 
     return scrollBehaviorRef.current;
 };
 
-const ScrollBehaviorProvider = ({ disableNextLinkScroll, shouldUpdateScroll, children }) => {
+const ScrollBehaviorProvider = ({ disableNextLinkScroll, shouldUpdateScroll, restoreSameLocation, children }) => {
     // Disable next <Link> scroll or not.
     useDisableNextLinkScroll(disableNextLinkScroll);
 
     // Get the scroll behavior, creating it just once.
-    const scrollBehavior = useScrollBehavior(shouldUpdateScroll);
+    const scrollBehavior = useScrollBehavior(shouldUpdateScroll, restoreSameLocation);
 
     // Create facade to use as the provider value.
     const providerValue = useMemo(() => ({
@@ -75,6 +82,7 @@ ScrollBehaviorProvider.defaultProps = {
 ScrollBehaviorProvider.propTypes = {
     disableNextLinkScroll: PropTypes.bool,
     shouldUpdateScroll: PropTypes.func,
+    restoreSameLocation: PropTypes.bool,
     children: PropTypes.node,
 };
 
