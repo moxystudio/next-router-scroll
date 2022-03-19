@@ -38,7 +38,7 @@
     "postrelease": "git push --follow-tags origin HEAD && npm publish"
   },
   "peerDependencies": {
-    "next": ">=9 <=11",
+    "next": ">=9 <13",
     "react": ">=16.8.0 <18",
     "react-dom": ">=16.8.0 <18"
   },
